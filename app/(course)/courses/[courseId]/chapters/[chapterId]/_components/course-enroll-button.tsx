@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
-import toast from 'react-hot-toast'
-import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import { formatPrice } from '@/lib/format'
+import axios from 'axios'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 type CourseEnrollButtonProps = {
   price: number
@@ -19,8 +19,9 @@ export default function CourseEnrollButton({ price, courseId }: CourseEnrollButt
       setIsLoading(true)
       const response = await axios.post(`/api/courses/${courseId}/checkout`)
       window.location.assign(response.data.url)
-    } catch {
-      toast.error('Something went wrong!')
+    } catch (error: any) {
+      console.log(error)
+      toast.error(error.response?.data || 'An error occurred')
     } finally {
       setIsLoading(false)
     }

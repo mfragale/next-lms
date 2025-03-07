@@ -1,8 +1,8 @@
+import { db } from '@/lib/db'
+import { stripe } from '@/lib/stripe'
 import { currentUser } from '@clerk/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { db } from '@/lib/db'
-import { stripe } from '@/lib/stripe'
 
 export async function POST(req: NextRequest, { params }: { params: { courseId: string } }) {
   try {
@@ -62,7 +62,8 @@ export async function POST(req: NextRequest, { params }: { params: { courseId: s
     })
 
     return NextResponse.json({ url: session.url })
-  } catch {
+  } catch (error: any) {
+    console.error(error)
     return new NextResponse('Internal server error', { status: 500 })
   }
 }

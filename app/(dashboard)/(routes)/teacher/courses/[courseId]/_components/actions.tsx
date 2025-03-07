@@ -1,13 +1,13 @@
 'use client'
 
+import { ConfirmModal } from '@/components/modals'
+import { Button } from '@/components/ui/button'
+import { useConfettiStore } from '@/hooks/use-confetti'
+import axios from 'axios'
 import { TrashIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { ConfirmModal } from '@/components/modals'
-import { useConfettiStore } from '@/hooks/use-confetti'
 
 type ActionsProps = {
   disabled?: boolean
@@ -29,7 +29,7 @@ export default function Actions({ disabled, isPublished, courseId }: ActionsProp
       router.refresh()
       router.push(`/teacher/courses/${courseId}`)
     } catch {
-      toast.error('Something went wrong!')
+      toast.error('Something went wrong! 2')
     } finally {
       setIsLoading(false)
     }
@@ -60,7 +60,7 @@ export default function Actions({ disabled, isPublished, courseId }: ActionsProp
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button variant="destructive" size="sm" disabled={isLoading}>
-          <TrashIcon className="h-4 w-4" />
+          <TrashIcon className="w-4 h-4" />
         </Button>
       </ConfirmModal>
     </div>

@@ -1,6 +1,6 @@
+import { db } from '@/lib/db'
 import { auth } from '@clerk/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
 
 export async function PATCH(req: NextRequest, { params }: { params: { courseId: string } }) {
   try {
@@ -19,7 +19,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { courseId: 
     }
 
     /** Should have a published chapter */
-    const hasPublishedChapter = course.chapters.some((chapter) => chapter.isPublished)
+    const hasPublishedChapter = course.chapters.some((chapter: { isPublished: any }) => chapter.isPublished)
 
     if (!course.title || !course.description || !course.imageUrl || !course.categoryId || !hasPublishedChapter) {
       return new NextResponse('Missing required fields', { status: 400 })
