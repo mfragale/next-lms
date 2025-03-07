@@ -39,3 +39,5 @@ npm run dev
 npx prisma studio
 docker run --rm -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust postgres
 stripe listen --forward-to localhost:3000/api/webhook
+
+https://github.com/MrHacker26/next-board
